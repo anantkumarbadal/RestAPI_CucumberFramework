@@ -8,6 +8,8 @@ import java.util.List;
 
 public class TestDataBuild {
 
+    //creating Test Data build file to create the JSON data using POJO classes and serialization concept
+
     public AddPlace addPlacePayload()
 
             //using serialization concept and importing the POJO classes
