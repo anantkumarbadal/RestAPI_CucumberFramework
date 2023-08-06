@@ -1,4 +1,4 @@
-package resources;
+package utilities;
 
 import pojoClasses.AddPlace;
 import pojoClasses.Location;

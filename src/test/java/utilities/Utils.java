@@ -1,4 +1,4 @@
-package resources;
+package utilities;
 
 import io.restassured.RestAssured;
 import io.restassured.builder.RequestSpecBuilder;
@@ -17,6 +17,7 @@ public class Utils {
     RequestSpecification reqSpec;
 
     public RequestSpecification requestSpecification() throws FileNotFoundException {
+
         //Google MAP- Add API Example
         RestAssured.baseURI = "https://rahulshettyacademy.com";
 
@@ -35,7 +36,7 @@ public class Utils {
     public void getGlobalValue() throws IOException {
         Properties prop = new Properties();
 
-        FileInputStream fis = new FileInputStream("src/test/java/resources/global.properties");
+        FileInputStream fis = new FileInputStream("src/test/resources/global.properties");
         prop.load(fis);
         prop.getProperty("baseUrl");
 

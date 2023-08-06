@@ -27,8 +27,8 @@ Body:
     }
 }
 HTTP/1.1 200 OK
-Date: Mon, 23 Jan 2023 06:47:17 GMT
-Server: Apache/2.4.41 (Ubuntu)
+Date: Fri, 04 Aug 2023 21:42:10 GMT
+Server: Apache/2.4.52 (Ubuntu)
 Access-Control-Allow-Origin: *
 Access-Control-Allow-Methods: POST
 Access-Control-Max-Age: 3600
@@ -40,8 +40,8 @@ Content-Type: application/json;charset=UTF-8
 
 {
     "status": "OK",
-    "place_id": "a0ae9231a42d88b816c5232bd7f496e9",
+    "place_id": "bceffc98df49048fecc300c1fc300735",
     "scope": "APP",
-    "reference": "0c66fc88af730de77ee916a35ad39c5b0c66fc88af730de77ee916a35ad39c5b",
-    "id": "0c66fc88af730de77ee916a35ad39c5b"
+    "reference": "b64f1e1930ad4ccb43e18a058e547c65b64f1e1930ad4ccb43e18a058e547c65",
+    "id": "b64f1e1930ad4ccb43e18a058e547c65"
 }
