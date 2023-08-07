@@ -14,32 +14,34 @@ public class Utils {
 
     //all ReUsable methods
 
-    RequestSpecification reqSpec;
+    public static RequestSpecification reqSpec;
+    public RequestSpecification requestSpecification() throws IOException
+    {
+        if(reqSpec == null) //writting this to avoid the repeat run and replace the previous value in the logging file
+        {
+            //for logging all the details
+            PrintStream log = new PrintStream(new FileOutputStream("logging.txt"));
 
-    public RequestSpecification requestSpecification() throws FileNotFoundException {
-
-        //Google MAP- Add API Example
-        RestAssured.baseURI = "https://rahulshettyacademy.com";
-
-        //for logging all the details
-        PrintStream log = new PrintStream(new FileOutputStream("logging.txt"));
-
-        reqSpec = new RequestSpecBuilder()
-                .setBaseUri("https://rahulshettyacademy.com")
-                .addQueryParam("key","qaclick123")
-                .addFilter(RequestLoggingFilter.logRequestTo(log)) //to log all the requests
-                .addFilter(ResponseLoggingFilter.logResponseTo(log)) //to log all the response
-                .setContentType(ContentType.JSON).build();
+            reqSpec = new RequestSpecBuilder()
+                    .setBaseUri(getGlobalValue("baseUrl"))
+                    .addQueryParam("key", "qaclick123")
+                    .addFilter(RequestLoggingFilter.logRequestTo(log)) //to log all the requests
+                    .addFilter(ResponseLoggingFilter.logResponseTo(log)) //to log all the response
+                    .setContentType(ContentType.JSON).build();
+            return reqSpec;
+        }
         return reqSpec;
     }
 
-    public void getGlobalValue() throws IOException {
-        Properties prop = new Properties();
+    public static String getGlobalValue(String key) throws IOException {
 
+        Properties properties = new Properties();
         FileInputStream fis = new FileInputStream("src/test/resources/global.properties");
-        prop.load(fis);
-        prop.getProperty("baseUrl");
+        properties.load(fis);
+        return properties.getProperty(key);
 
     }
+
+
 
 }

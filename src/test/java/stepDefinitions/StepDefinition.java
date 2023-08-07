@@ -16,6 +16,7 @@ import utilities.TestDataBuild;
 import utilities.Utils;
 
 import java.io.FileNotFoundException;
+import java.io.IOException;
 
 import static io.restassured.RestAssured.given;
 import static org.junit.Assert.assertEquals;
@@ -27,11 +28,11 @@ public class StepDefinition extends Utils {
     ResponseSpecification resSpec;
     static Response response;
     TestDataBuild data = new TestDataBuild();
-    @Given("Add Place Payload")
-    public void add_place_payload() throws FileNotFoundException {
+    @Given("Add Place Payload with {string}  {string} {string}")
+    public void add_place_payload_with(String name, String language, String address) throws IOException {
 
         reqSpec = given().spec(requestSpecification())
-                .body(data.addPlacePayload()).log().all();
+                .body(data.addPlacePayload(name, language, address )).log().all();
     }
     @When("User calls {string} with post http request")
     public void user_calls_with_post_http_request(String string) {
@@ -39,7 +40,7 @@ public class StepDefinition extends Utils {
         resSpec = new ResponseSpecBuilder().expectStatusCode(200).expectContentType(ContentType.JSON).build();
 
     response = reqSpec.when()
-                  .post("/maps/api/place/add/json")
+                  .post("/maps/api/place/add/json")// use Enum class to declare the constants for the Resources
                   .then().spec(resSpec)//here used the ResponseSpecification object where we stored the Assertions and validations
                   .log().all()
                   .extract().response();

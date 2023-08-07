@@ -10,7 +10,7 @@ public class TestDataBuild {
 
     //creating Test Data build file to create the JSON data using POJO classes and serialization concept
 
-    public AddPlace addPlacePayload()
+    public AddPlace addPlacePayload(String name, String language, String address)
 
             //using serialization concept and importing the POJO classes
     {
@@ -19,11 +19,11 @@ public class TestDataBuild {
 
         //setting up data
         ap.setAccuracy(50);
-        ap.setAddress("29, side layout, cohen 09");
-        ap.setLanguage("French-IN");
+        ap.setAddress(address);//The value will come dynamically from the feature file
+        ap.setLanguage(language);//The value will come dynamically from the feature file
         ap.setPhone_number("(+91) 983 893 3937");
         ap.setWebsite("https://rahulshettyacademy.com");
-        ap.setName("Frontline house");
+        ap.setName(name); //The value will come dynamically from the feature file
 
         //for types we have to pass the List of values - arrays of values
         List<String> myList = new ArrayList<String>();
