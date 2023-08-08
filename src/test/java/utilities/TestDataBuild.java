@@ -42,4 +42,9 @@ public class TestDataBuild {
         //as we are returning the object to AddPlace class
         return ap;
     }
+
+    public String deletePlacePayload(String place_id)
+    {
+        return "{\"place_id\":\""+place_id+"\"}";
+    }
 }

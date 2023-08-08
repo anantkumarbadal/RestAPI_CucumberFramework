@@ -1,10 +1,11 @@
 package utilities;
 
-import io.restassured.RestAssured;
 import io.restassured.builder.RequestSpecBuilder;
 import io.restassured.filter.log.RequestLoggingFilter;
 import io.restassured.filter.log.ResponseLoggingFilter;
 import io.restassured.http.ContentType;
+import io.restassured.path.json.JsonPath;
+import io.restassured.response.Response;
 import io.restassured.specification.RequestSpecification;
 
 import java.io.*;
@@ -15,9 +16,9 @@ public class Utils {
     //all ReUsable methods
 
     public static RequestSpecification reqSpec;
-    public RequestSpecification requestSpecification() throws IOException
-    {
-        if(reqSpec == null) //writting this to avoid the repeat run and replace the previous value in the logging file
+
+    public RequestSpecification requestSpecification() throws IOException {
+        if (reqSpec == null) //writting this to avoid the repeat run and replace the previous value in the logging file
         {
             //for logging all the details
             PrintStream log = new PrintStream(new FileOutputStream("logging.txt"));
@@ -42,6 +43,13 @@ public class Utils {
 
     }
 
+    public String getJsonPath(Response response, String key) {
+
+        String resp = response.asString();
+        JsonPath js = new JsonPath(resp);
+        return js.get(key).toString();
+
+    }
 
 
 }
