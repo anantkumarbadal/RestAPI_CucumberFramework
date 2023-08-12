@@ -1,4 +1,7 @@
-resources\TestDataBuild.class
-resources\Utils.class
+stepDefinitions\Hooks.class
+extentReport\ExtentReportTest.class
+utilities\Utils.class
+utilities\TestDataBuild.class
 stepDefinitions\StepDefinition.class
 cucumber\Options\TestRunner.class
+utilities\ApiResources.class

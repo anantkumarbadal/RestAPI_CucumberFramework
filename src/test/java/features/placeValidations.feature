@@ -1,5 +1,7 @@
 Feature: Validating Place APIs
 
+  #adding tags to run only particular test cases using the tags
+  @AddPlace
   Scenario Outline: Verify if Place is being successfully added using AddPlaceAPI
 
     Given Add Place Payload with "<name>"  "<language>" "<address>"
@@ -13,9 +15,9 @@ Feature: Validating Place APIs
 
     | name    | language | address     |
   #  | MyHouse | English  | DLF Phase 1 |
-    | Anant   | Hindi  | Indira Nagar |
+    | Anant   | Hindi  | Patna |
 
-
+ @DeletePlace
   Scenario: Verify if Delete Place functionality is working
     Given DeletePlace Payload
     When  User calls "DeletePlaceAPI" with "POST" http request

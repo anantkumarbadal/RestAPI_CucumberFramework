@@ -30,12 +30,13 @@ public class StepDefinition extends Utils {
     static Response response;
     TestDataBuild data = new TestDataBuild();
     static String place_id; //making it static bcz this variable will be shared across the test case with the same copy and will refer the same
+
     //if we do not make it static then it will throw null pointer exception or the place_id in payload will be null
     @Given("Add Place Payload with {string}  {string} {string}")
     public void add_place_payload_with(String name, String language, String address) throws IOException {
 
         reqSpec = given().spec(requestSpecification())
-                .body(data.addPlacePayload(name, language, address)).log().all();
+                .body(data.addPlacePayload(name, language, address));
     }
 
     @When("User calls {string} with {string} http request")
@@ -44,7 +45,7 @@ public class StepDefinition extends Utils {
         //calling resources from enum
         //constructor will be called with value of resource which you pass
         ApiResources apiResources = ApiResources.valueOf(resource); //resource is coming from the feature file and invoking constructor to fall in this valueOf() method and get different API resources from enum
-        System.out.printf("API Resource: " + apiResources.getResource());
+        System.out.println("API Resource: " + apiResources.getResource());
 
         resSpec = new ResponseSpecBuilder().expectStatusCode(200).expectContentType(ContentType.JSON).build();
 
@@ -65,11 +66,12 @@ public class StepDefinition extends Utils {
     //both the values will come from the feature file to validate the responses
     public void in_response_body_is(String keyValue, String expectedValue) {
 
-    //    System.out.println(keyValue);
-    //    System.out.println(expectedValue);
+        //    System.out.println(keyValue);
+        //    System.out.println(expectedValue);
 
-    //    assertEquals(js.get(keyValue).toString(), expectedValue); //here have to pass two arguments to validate the response
-    //using Utils class
+        //    assertEquals(js.get(keyValue).toString(), expectedValue); //here have to pass two arguments to validate the response
+        //using Utils class
+
         Assert.assertEquals(getJsonPath(response, keyValue), expectedValue);
 
     }
@@ -84,7 +86,7 @@ public class StepDefinition extends Utils {
         reqSpec = given().spec(requestSpecification()).queryParam("place_id", place_id);
         user_calls_with_http_request(resource, "GET"); //using this method to call the http method
         String actualName = getJsonPath(response, "name");
-        Assert.assertEquals(actualName,expectedName);
+        Assert.assertEquals(actualName, expectedName);
     }
 
     @Given("DeletePlace Payload")
@@ -93,7 +95,6 @@ public class StepDefinition extends Utils {
         reqSpec = given().spec(requestSpecification()).body(data.deletePlacePayload(place_id)); //getting the place_id from the previous test case and deleting here
 
     }
-
 
 
 }
